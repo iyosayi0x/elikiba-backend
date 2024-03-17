@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routes import posts_router
+from src.routes import posts_router
 
 app = FastAPI()
 
