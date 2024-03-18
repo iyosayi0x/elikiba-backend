@@ -4,10 +4,10 @@ from sqlalchemy import select
 from .models import Article, engine
 
 
-posts_router = APIRouter()
+posts_router = APIRouter(prefix="/posts")
 
 
-@posts_router.get("/posts/")
+@posts_router.get("/")
 def list_posts():
     with Session(engine) as session:
         statement = select(Article)

@@ -8,20 +8,23 @@ from sqlalchemy import event
 from sqlalchemy.orm import Session
 
 from src.config import Config
+from src.schemas import ArticleSchema
 
 engine = create_engine(Config.DATABASE_URI, echo=True)
 
 
+# models
 class Base(DeclarativeBase):
     id = Column(UUID, primary_key=True, default=uuid.uuid4)
 
 
 class Article(Base):
     __tablename__ = "articles"
+    __pydantic_model__ = ArticleSchema
     is_headline: Mapped[bool] = mapped_column(default=False)
     title: Mapped[str] = mapped_column(String(30))
     slug: Mapped[str] = mapped_column(String(255), unique=True)
-    type: Mapped[str] = mapped_column(String(100))
+    type: Mapped[str] = mapped_column(String(100), default="article")
     author: Mapped[str] = mapped_column(String(60))
     content: Mapped[str] = mapped_column(Text)
     excerpt: Mapped[str] = mapped_column(String(255))
