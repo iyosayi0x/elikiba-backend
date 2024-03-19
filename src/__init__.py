@@ -22,7 +22,7 @@ class ArticleAdmin(ModelAdmin):
     page_schema = 'Articles'
     model = Article
     list_display = [Article.id, Article.title, Article.slug]
-    ordering = Article.created_at
+    ordering = "created_at"
     list_per_page = 20
 
 
