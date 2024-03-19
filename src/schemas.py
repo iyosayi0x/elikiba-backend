@@ -1,11 +1,13 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 import uuid
 from datetime import datetime
 
 
 class ArticleSchema(BaseModel):
-    id: uuid = Field(
-        default=uuid.uuid4, primary_key=True, nullable=False)
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID = Field(
+        default_factory=uuid.uuid4, primary_key=True, nullable=False)
     is_headline: bool = Field(default=False)
     title: str = Field(nullable=False)
     slug: str = Field(nullable=False)
@@ -17,6 +19,3 @@ class ArticleSchema(BaseModel):
     tags: str = Field(nullable=False)
     created_at: datetime = Field(nullable=False, default=datetime.utcnow)
     last_updated_at: datetime = Field(nullable=False, default=datetime.utcnow)
-
-    class Config:
-        orm_mode = True
