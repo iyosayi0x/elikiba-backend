@@ -35,8 +35,17 @@ class ArticleAdmin(ModelAdmin):
         Article.read_minutes,
         Article.tags,
     ]
+    create_fields = [
+        Article.title,
+        Article.is_headline,
+        Article.type,
+        Article.author,
+        Article.content,
+        Article.excerpt,
+        Article.read_minutes,
+        Article.tags,
+    ]
     list_display = [
-        Article.id,
         Article.title,
         Article.slug,
         Article.created_at,

@@ -22,7 +22,7 @@ class Article(Base):
     __pydantic_model__ = ArticleSchema
     is_headline: Mapped[bool] = mapped_column(default=False)
     title: Mapped[str] = mapped_column(String(30))
-    slug: Mapped[str] = mapped_column(String(255), unique=True)
+    slug: Mapped[str] = mapped_column(String(255), unique=True, nullable=True)
     type: Mapped[str] = mapped_column(String(100), default="article")
     author: Mapped[str] = mapped_column(String(60))
     content: Mapped[str] = mapped_column(Text)
