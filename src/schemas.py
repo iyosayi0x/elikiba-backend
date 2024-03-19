@@ -1,13 +1,10 @@
 from pydantic import BaseModel, Field, ConfigDict
-import uuid
 from datetime import datetime
 
 
 class ArticleSchema(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-
-    id: uuid.UUID = Field(
-        default_factory=uuid.uuid4, primary_key=True, nullable=False)
+    id: int
     is_headline: bool = Field(default=False)
     title: str = Field(nullable=False)
     slug: str = Field(nullable=True)

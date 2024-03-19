@@ -1,7 +1,6 @@
 from sqlalchemy.orm import mapped_column, Mapped
-from sqlalchemy import String, Text, Column, UUID, TIMESTAMP
+from sqlalchemy import String, Text, TIMESTAMP
 from sqlalchemy import create_engine
-import uuid
 from datetime import datetime
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import event
@@ -15,7 +14,7 @@ engine = create_engine(Config.DATABASE_URI, echo=True)
 
 # models
 class Base(DeclarativeBase):
-    id = Column(UUID, primary_key=True, default=uuid.uuid4)
+    id: Mapped[int] = mapped_column(primary_key=True)
 
 
 class Article(Base):
