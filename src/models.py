@@ -5,6 +5,8 @@ from datetime import datetime
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import event
 from sqlalchemy.orm import Session
+from sqlalchemy import Enum
+import enum
 
 from src.config import Config
 from src.schemas import ArticleSchema
@@ -17,13 +19,19 @@ class Base(DeclarativeBase):
     id: Mapped[int] = mapped_column(primary_key=True)
 
 
+class ArticleTypeEnum(enum.Enum):
+    article = "article",
+    showcase = "entry"
+
+
 class Article(Base):
     __tablename__ = "articles"
     __pydantic_model__ = ArticleSchema
     is_headline: Mapped[bool] = mapped_column(default=False)
     title: Mapped[str] = mapped_column(String(30))
     slug: Mapped[str] = mapped_column(String(255), unique=True, nullable=True)
-    type: Mapped[str] = mapped_column(String(100), default="article")
+    type: Mapped[str] = mapped_column(
+        Enum(ArticleTypeEnum), default=ArticleTypeEnum.article)
     author: Mapped[str] = mapped_column(String(60))
     content: Mapped[str] = mapped_column(Text)
     excerpt: Mapped[str] = mapped_column(String(255))
