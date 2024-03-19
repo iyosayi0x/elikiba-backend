@@ -17,5 +17,5 @@ class ArticleSchema(BaseModel):
     excerpt: str = Field(nullable=False)
     read_minutes: int = Field(nullable=False)
     tags: str = Field(nullable=False)
-    created_at: datetime = Field(nullable=False, default=datetime.utcnow)
-    last_updated_at: datetime = Field(nullable=False, default=datetime.utcnow)
+    created_at: datetime = Field(nullable=False)
+    last_updated_at: datetime = Field(nullable=False)

@@ -23,10 +23,7 @@ class ArticleAdmin(ModelAdmin):
     model = Article
     list_display = [Article.id, Article.title, Article.slug]
     ordering = Article.created_at
-
-    async def get_select(self, request):
-        statement = await super().get_select(request)
-        return statement
+    list_per_page = 20
 
 
 site.mount_app(app)
