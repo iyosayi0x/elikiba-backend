@@ -7,9 +7,15 @@ from elikiba.models import BaseModel
 class Tag(BaseModel):
     name = models.CharField(max_length=20, unique=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Author(BaseModel):
     name = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.name
 
 
 class Article(BaseModel):
@@ -20,3 +26,6 @@ class Article(BaseModel):
     exert = models.CharField(max_length=200)
     read_minutes = models.PositiveIntegerField()
     tags = models.ManyToManyField(Tag, related_name="tags")
+
+    def __str__(self):
+        return self.title
