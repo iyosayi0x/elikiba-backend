@@ -1,0 +1,37 @@
+services:
+  db:
+    image: "postgres:latest"
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+
+  elikiba_web:
+    env_file:
+      - .env 
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: gunicorn elikiba.wsgi:application -c gunicorn_config.py
+    volumes:
+      - ./src:/usr/app
+    depends_on:
+      - rabbitmq
+      - redis
+      - db
+    expose:
+      - 8000
+
+volumes:
+  postgresql-data:
+
+
+networks:
+  default:
+    name: elikiba
