@@ -167,6 +167,7 @@ MEDIA_URL = '/media/'
 MEDIA_PATH = 'static/media'
 DEFAULT_MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_PATH)
 MEDIA_ROOT = os.environ.get('DJANGO_MEDIA_ROOT', DEFAULT_MEDIA_ROOT)
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
