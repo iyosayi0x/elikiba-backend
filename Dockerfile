@@ -7,7 +7,8 @@ ENV TZ="US"
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install necessary packages
-RUN apt-get update && apt-get install -y postgresql-client
+RUN apt-get update 
+RUN apt-get install -y postgresql-client
 
 # Set up the working directory
 RUN mkdir -p /usr/app
