@@ -20,10 +20,8 @@ services:
       dockerfile: ./Dockerfile
     command: gunicorn elikiba.wsgi:application -c gunicorn_config.py
     volumes:
-      - ./src:/usr/app
+      - .:/usr/app
     depends_on:
-      - rabbitmq
-      - redis
       - db
     expose:
       - 8000

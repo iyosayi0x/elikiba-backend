@@ -24,9 +24,16 @@ class Article(BaseModel):
     title = models.CharField(max_length=200)
     author = models.ForeignKey(Author, on_delete=models.SET_NULL)
     content = RichTextField()
+    display_image = models.ImageField(upload_to="/articles")
     exert = models.CharField(max_length=200)
     read_minutes = models.PositiveIntegerField()
     tags = models.ManyToManyField(Tag, related_name="tags")
 
     def __str__(self):
         return self.title
+
+
+class SocialChannel(BaseModel):
+    name = models.CharField(max_length=20, unique=True)
+    link = models.URLField(max_length=100)
+    icon = models.ImageField(upload_to="/socials")

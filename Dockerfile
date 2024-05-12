@@ -18,7 +18,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1 
 
 # copy whole project to your docker home directory. 
-COPY ./src /usr/app/
+COPY . /usr/app/
 
 # remove default nginx conf 
 RUN echo "Deleting default nginx conf"
