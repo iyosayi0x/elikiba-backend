@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     "corsheaders",
     'rest_framework',
     "rest_framework_simplejwt.token_blacklist",
-    'cloudinary',
+    # 'cloudinary',
     "django_summernote",
 
     "account.apps.AccountConfig"
@@ -124,6 +124,10 @@ REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'elikiba.exceptions.elikiba_exception_handler'
 }
 
+STATICFILES_DIRS = [
+]
+
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
@@ -162,7 +166,7 @@ USE_TZ = True
 
 MEDIA_URL = '/media/'
 MEDIA_PATH = 'static/media'
-STATIC_URL = "/static"
+STATIC_URL = "/static/"
 STATIC_ROOT = "/static"
 DEFAULT_MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_PATH)
 MEDIA_ROOT = os.environ.get('DJANGO_MEDIA_ROOT', DEFAULT_MEDIA_ROOT)
