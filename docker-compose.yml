@@ -23,6 +23,8 @@ services:
       - .:/usr/app
     depends_on:
       - db
+    ports:
+      - 8000:8000
     expose:
       - 8000
 

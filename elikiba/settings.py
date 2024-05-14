@@ -30,14 +30,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    "ckeditor",
     "corsheaders",
     'rest_framework',
     "rest_framework_simplejwt.token_blacklist",
     'cloudinary',
-    "account.apps.AccountConfig",
-    "blog.apps.BlogConfig",
+    "django_summernote",
 
+    "account.apps.AccountConfig"
 ]
 
 CLOUDINARY_STORAGE = {
@@ -122,7 +121,6 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
     ],
-    'PAGE_SIZE': 10,
     'EXCEPTION_HANDLER': 'elikiba.exceptions.elikiba_exception_handler'
 }
 
@@ -164,9 +162,11 @@ USE_TZ = True
 
 MEDIA_URL = '/media/'
 MEDIA_PATH = 'static/media'
+STATIC_URL = "/static"
+STATIC_ROOT = "/static"
 DEFAULT_MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_PATH)
 MEDIA_ROOT = os.environ.get('DJANGO_MEDIA_ROOT', DEFAULT_MEDIA_ROOT)
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
