@@ -165,12 +165,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# media backend
+STATIC_URL = '/static/'
+STATIC_FILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    os.environ.get('FRONT_STATIC', None)
+)
+STATIC_ROOT = os.environ.get('DJANGO_STATIC_ROOT', None)
+
 MEDIA_URL = '/media/'
 MEDIA_PATH = 'static/media'
-STATIC_URL = "/static/"
-STATIC_ROOT = "/static"
 DEFAULT_MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_PATH)
 MEDIA_ROOT = os.environ.get('DJANGO_MEDIA_ROOT', DEFAULT_MEDIA_ROOT)
+
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
