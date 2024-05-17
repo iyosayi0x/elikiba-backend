@@ -30,10 +30,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'cloudinary_storage',
     "corsheaders",
     'rest_framework',
     "rest_framework_simplejwt.token_blacklist",
-    # 'cloudinary',
+    'cloudinary',
     "django_summernote",
 
     "account.apps.AccountConfig"
@@ -170,7 +171,8 @@ STATIC_URL = "/static/"
 STATIC_ROOT = "/static"
 DEFAULT_MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_PATH)
 MEDIA_ROOT = os.environ.get('DJANGO_MEDIA_ROOT', DEFAULT_MEDIA_ROOT)
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
