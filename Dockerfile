@@ -21,19 +21,11 @@ ENV PYTHONUNBUFFERED 1
 # copy whole project to your docker home directory. 
 COPY . /usr/app/
 
-# remove default nginx conf 
-RUN echo "Deleting default nginx conf"
-RUN rm -fr /etc/nginx/conf.d/default.conf
-
-
 # add execute permission to entry point sh
 RUN chmod +x entrypoint.sh
 
-# copy requirements
-COPY ./requirements.txt /usr/app/requirements.txt
-
 # upgrade pip and install dependencies
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 
 RUN apt-get install -y vim 
