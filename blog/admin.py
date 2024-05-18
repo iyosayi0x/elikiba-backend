@@ -1,11 +1,14 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
+from django_summernote.admin import SummernoteModelAdmin
 from .models import Article, Tag, Author
 # Register your models here.
 
 
-class ArticleAdmin(ModelAdmin):
+class ArticleAdmin(SummernoteModelAdmin):
+    summernote_fields = ('content',)
     list_display = ('id', 'title', 'author', "created_at")
+    exclude = ("slug",)
 
 
 class TagAdmin(ModelAdmin):

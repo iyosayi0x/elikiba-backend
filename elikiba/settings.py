@@ -31,13 +31,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'cloudinary_storage',
+    'cloudinary',
     "corsheaders",
     'rest_framework',
     "rest_framework_simplejwt.token_blacklist",
-    'cloudinary',
     "django_summernote",
 
-    "account.apps.AccountConfig"
+    "account.apps.AccountConfig",
+    "blog.apps.BlogConfig"
 ]
 
 CLOUDINARY_STORAGE = {
