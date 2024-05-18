@@ -25,6 +25,10 @@ COPY . /usr/app/
 RUN echo "Deleting default nginx conf"
 RUN rm -fr /etc/nginx/conf.d/default.conf
 
+
+# add execute permission to entry point sh
+RUN chmod +x entrypoint.sh
+
 # copy requirements
 COPY ./requirements.txt /usr/app/requirements.txt
 
