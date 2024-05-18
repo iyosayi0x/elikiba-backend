@@ -1,6 +1,9 @@
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.exceptions import ParseError
 from datetime import datetime, timedelta
+from rest_framework import status
+
+from elikiba.errors import CustomError
 from .models import Article
 from .serializers import ArticleSerializer
 
@@ -43,4 +46,26 @@ class ArticlesView(ListAPIView):
                 title__icontains=name_search.lower()
             )
 
+        queryset.order_by("-created_at")
+        return queryset
+
+
+class ArticleRetrieveView(RetrieveAPIView):
+    serializer_class = ArticleSerializer
+
+    def get_object(self, *args, **kwargs):
+        slug = self.kwargs.get("slug")
+
+        try:
+            return Article.objects.get(slug=slug)
+        except Article.DoesNotExist:
+            raise CustomError(message="Article does not exists",
+                              status_code=status.HTTP_400_BAD_REQUEST)
+
+
+class ArticleLatestView(ListAPIView):
+    serializer_class = ArticleSerializer
+
+    def get_queryset(self):
+        queryset = Article.objects.all().order_by("-created_at")[:4]
         return queryset
