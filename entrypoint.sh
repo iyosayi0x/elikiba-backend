@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# # Install requirements from requirements.txt
-# pip install -r requirements.txt
+# Install requirements from requirements.txt
+pip install -r requirements.txt
 
-# # Create migrations (assuming Django project structure)
-# python manage.py makemigrations --no-input
+# Create migrations (assuming Django project structure)
+python manage.py makemigrations --no-input
 
-# # Apply migrations to the database
-# python manage.py migrate --no-input
+# Apply migrations to the database
+python manage.py migrate --no-input
 
-# # Collect staticfiles
-# python manage.py collectstatic --no-input --clear
+# Collect staticfiles
+python manage.py collectstatic --no-input --clear
 
 # Create a superuser with credentials from environment variables
 if [ -z "$SUPERUSER_EMAIL" ] || [ -z "$SUPERUSER_PASSWORD" ]; then
@@ -26,5 +26,8 @@ email = "$SUPERUSER_EMAIL"
 password = "$SUPERUSER_PASSWORD"
 
 if not User.objects.filter(email=email).exists():
+    print("Creating supseruser")
     User.objects.create_superuser(email=email, password=password)
+else:
+    print("Superuser already exists")
 EOF
