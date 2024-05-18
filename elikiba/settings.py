@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     "django_summernote",
 
     "account.apps.AccountConfig",
-    "blog.apps.BlogConfig"
+    "blog.apps.BlogConfig",
+    "store.apps.StoreConfig"
 ]
 
 CLOUDINARY_STORAGE = {
