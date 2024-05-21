@@ -3,21 +3,22 @@
 # Install requirements from requirements.txt
 pip install -r requirements.txt
 
-# Create migrations (assuming Django project structure)
+# # Create migrations (assuming Django project structure)
 python manage.py makemigrations --no-input
 
-# Apply migrations to the database
+# # Apply migrations to the database
 python manage.py migrate --no-input
 
 # Collect staticfiles
-python manage.py collectstatic --no-input --clear
+python manage.py collectstatic --no-input || echo "Failed to collect static"
 
-# Create a superuser with credentials from environment variables
+#  Create a superuser with credentials from environment variables
 if [ -z "$SUPERUSER_EMAIL" ] || [ -z "$SUPERUSER_PASSWORD" ]; then
   echo "SUPERUSER_EMAIL and SUPERUSER_PASSWORD environment variables must be set."
   exit 0
 fi
 
+# Create admin user 
 python manage.py shell <<EOF
 from django.contrib.auth import get_user_model
 
